@@ -1,6 +1,6 @@
 from typing import Any, List, Optional
 
-from pydantic import BaseModel, Field, HttpUrl, constr
+from pydantic import BaseModel, Field, HttpUrl
 from uptime_kuma_api import IncidentStyle
 
 
@@ -29,26 +29,20 @@ class PublicGroup(BaseModel):
 
 
 class StatusPage(BaseModel):
-    customCSS: Optional[str] = None
-    description: Optional[str]
-    domainNameList: List[HttpUrl]
-    footerText: Optional[str]
-    googleAnalyticsId: Optional[str]
-    icon: str
     id: int
-    incident: Optional[Incident]
-    maintenanceList: Optional[List]
-    published: bool
-    showPoweredBy: bool
-    showTags: bool
-    slug: constr(min_length=1)
-    theme: str
+    slug: str
     title: str
-    publicGroupList: Optional[List[PublicGroup]]
-
-
-class StatusPageList(BaseModel):
-    statuspages: List[StatusPage] = []
+    description: Optional[str] = None
+    icon: str
+    theme: str
+    published: bool
+    showTags: bool
+    domainNameList: List[str]
+    customCSS: str
+    footerText: Optional[str] = None
+    showPoweredBy: bool
+    googleAnalyticsId: Optional[str] = None
+    showCertificateExpiry: bool
 
 
 class AddStatusPageRequest(BaseModel):

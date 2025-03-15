@@ -1,3 +1,4 @@
+from typing import List
 from config import logger as logging
 from fastapi import APIRouter, Depends, Path
 from auth.schemas import JWTSession
@@ -11,7 +12,6 @@ from .schemas import (
     SaveStatusPageRequest,
     SaveStatusPageResponse,
     StatusPage,
-    StatusPageList,
     UnpinIncidentResponse,
 )
 from uptime_kuma_api import IncidentStyle, UptimeKumaException
@@ -21,7 +21,7 @@ from response import success
 router = APIRouter(redirect_slashes=True)
 
 
-@router.get("", response_model=StatusPageList, description="Get all status pages")
+@router.get("", response_model=List[StatusPage], description="Get all status pages")
 async def get_all_status_pages(s: JWTSession = Depends(get_jwt_session)):
     return await with_exceptions_handling(s.api.get_status_pages)
 
