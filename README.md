@@ -63,7 +63,6 @@ You will connect with those credentials:
 You can simply create a docker compose file like this :
 
 ```yaml
-version: "3.9"
 services:
   kuma:
     container_name: uptimes-kuma
