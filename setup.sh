@@ -36,6 +36,9 @@ read SETUP_SERVICE
 if [ "$SETUP_SERVICE" = "y" ]; then
   ENV_PATH = $(pwd)/.env
 
+  echo "Enter service name:"
+  read SERVICE_NAME
+
   # Write to service file
   touch $SERVICE_NAME.service
   echo "[Unit]" >> $SERVICE_NAME.service
