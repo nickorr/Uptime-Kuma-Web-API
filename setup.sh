@@ -17,12 +17,15 @@ read KUMA_PASSWORD
 echo "Enter Admin Password:"
 read ADMIN_PASSWORD
 
+SECRET_KEY=$(openssl rand -hex 32)
+
 # Write to .env
 echo "KUMA_SERVER=$KUMA_SERVER" >> .env
 echo "KUMA_USERNAME=$KUMA_USERNAME" >> .env
 echo "KUMA_PASSWORD=$KUMA_PASSWORD" >> .env
 echo "ADMIN_PASSWORD=$ADMIN_PASSWORD" >> .env
 echo "ACCESS_TOKEN_EXPIRATION=$ACCESS_TOKEN_EXPIRATION" >> .env
+echo "SECRET_KEY=$SECRET_KEY" >> .env
 
 # Install dependencies
 python3.9 -m venv .venv
