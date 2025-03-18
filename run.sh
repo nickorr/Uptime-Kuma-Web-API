@@ -1,7 +1,7 @@
 #!/bin/sh
 
 export DIR=./app
-export VENV=$DIR/.venv/bin/activate
+export VENV=./.venv/bin/activate
 
 # Check if .env exists and load it
 if [ -f "./.env" ]; then
@@ -23,6 +23,8 @@ fi
 if [ -z "$LOG_LEVEL" ]; then
   export LOG_LEVEL=INFO
 fi
+
+source $VENV
 
 cd $DIR
 
