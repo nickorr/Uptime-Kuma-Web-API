@@ -50,10 +50,13 @@ if [ "$SETUP_SERVICE" = "y" ]; then
   echo "Enter service name:"
   read SERVICE_NAME
 
+  SERVICE_USER = $(whoami)
+  SERVICE_PATH = $(pwd)
+
   # Write to service file
   touch $SERVICE_NAME.service
   echo "[Unit]" >> $SERVICE_NAME.service
-  echo "Description=$SERVICE_DESCRIPTION" >> $SERVICE_NAME.service
+  echo "Description=Kuma REST API" >> $SERVICE_NAME.service
   echo "After=network.target" >> $SERVICE_NAME.service
   echo "" >> $SERVICE_NAME.service
   echo "[Service]" >> $SERVICE_NAME.service
