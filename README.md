@@ -4,12 +4,23 @@
 
 ---
 
-## EndPoints:
+## Endpoints:
 
-![Alt text](./images/1.png)
-![Alt text](./images/2.png)
+![1](./images/1.png)
+![2](./images/2.png)
+![3](./images/3.png)
+![4](./images/4.png)
 
 ## How to use it:
+```bash
+git clone https://github.com/021-projects/Uptime-Kuma-Web-API.git
+cd Uptime-Kuma-Web-API
+git checkout develop
+./setup.sh
+./run.sh
+```
+
+## How to use it with Docker:
 
 ---
 
@@ -26,6 +37,7 @@ You have to define these ENV VARS in order to connect to your KUMA server.
 #### Optional
 Additional configuration variables available
 
+    KUMA_WAIT_EVENTS: Time in seconds to wait for events to be processed. Defaults to 0.2 second.
     ACCESS_TOKEN_EXPIRATION: Minutes the access token should be valid. Defaults to 8 days.
     SECRET_KEY: A secret value to encode JWTs with
 
@@ -51,16 +63,15 @@ You will connect with those credentials:
 You can simply create a docker compose file like this :
 
 ```yaml
-version: "3.9"
 services:
   kuma:
-    container_name: uptime-kuma
-    image: louislam/uptime-kuma:latest
+    container_name: uptimes-kuma
+    image: louislam/uptimes-kuma:latest
     ports:
       - "3001:3001"
     restart: always
     volumes:
-      - uptime-kuma:/app/data
+      - uptimes-kuma:/app/data
 
   api:
     container_name: backend
@@ -90,9 +101,6 @@ volumes:
 ---
 
 ```bash
-
-    TOKEN=$(curl -X -L 'POST' -H 'Content-Type: application/x-www-form-urlencoded' --data 'username=admin&password=admin' http://127.0.0.1:8000/login/access-token/ | jq -r ".access_token")
-
-    curl -L -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" http://127.0.0.1:8000/monitors/
-
+TOKEN=$(curl -L -X 'POST' -H 'Content-Type: application/x-www-form-urlencoded' --data 'grant_type=password&username=admin&password=admin' http://127.0.0.1:8000/login/access-token/ | jq -r ".access_token")
+curl -L -H 'Accept: application/json' -H "Authorization: Bearer ${TOKEN}" http://127.0.0.1:8000/monitors/
 ```
