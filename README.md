@@ -1,3 +1,5 @@
+This is a fork of the original version, with some minor fixes.  It sounds like the original devs are busy and I wanted to have something to try out v2 with in the mean time.
+
 # Uptime-Kuma-Web-API
 
 ## A REST API wrapper for [Uptime Kuma](https://github.com/louislam/uptime-kuma) using [Uptime-Kuma-API](https://github.com/lucasheld/uptime-kuma-api)
